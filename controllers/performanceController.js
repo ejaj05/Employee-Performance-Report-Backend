@@ -243,9 +243,11 @@ const getReportsByRole = async (req, res) => {
       })
     )
 
+    const filteredReports = transformReport.filter(item => item !== undefined);
+
     return res.status(200).json({
       success: true,
-      report: transformReport
+      report: filteredReports
     });
 
   } catch (error) {
@@ -277,9 +279,11 @@ const getReportsByDepartment = async (req, res) => {
       })
     )
 
+    const filteredReports = transformReport.filter(item => item !== undefined);
+
     return res.status(200).json({
       success: true,
-      report: transformReport
+      report: filteredReports
     });
   } catch (error) {
     res.status(500).json({ error: error.message || 'Failed to fetch reports by department' });
