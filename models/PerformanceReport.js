@@ -12,8 +12,8 @@ const performanceReportSchema = new mongoose.Schema({
     absentDays: { type: Number, default: 0 }
   },
   clientFeedback: {
-    rating: { type: Number, required: true },
-    clientLeft: { type: String, default: "False" }
+    rating: { type: String, required: true },
+    clientLeft: { type: Number, default: 0 }
   },
   scoreBreakdown: {
     attendance: { type: Number, default: 0 },

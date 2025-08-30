@@ -19,30 +19,27 @@ const calculatePerformanceScore = (input, employee) => {
   };
 
   // Attendance
-  const totalAttendance = input.attendance.presentDays + input.attendance.paidLeaveDays + input.attendance.sickLeaveDays;
-  if (totalAttendance === input.attendance.totalDays) {
-    if (input.attendance.paidLeaveDays === 0 && input.attendance.sickLeaveDays === 0) {
+  if (input.attendance.paidLeaveDays === 0 && input.attendance.sickLeaveDays === 0) {
       score += 5;
       breakdown.attendance += 5;
-    }
   }
-  const absentPenalty = input.attendance.absentDays * 2;
+  const absentPenalty = input.attendance.absentDays * 5;
   score -= absentPenalty;
   breakdown.attendance -= absentPenalty;
 
   // Client Feedback
-  console.log(input)
-  if (input.clientFeedback.rating >= 3) {
+  if (input.clientFeedback.rating == "Good") {
       score += 5;
       breakdown.clientFeedback += 5;
-    } else if (input.clientFeedback.rating <= 2) {
+    } else if (input.clientFeedback.rating == "Bad") {
       score -= 5;
       breakdown.clientFeedback -= 5;
     }
-    if (input.clientFeedback.clientLeft == "True") {
-      score -= 20;
-      breakdown.clientFeedback -= 20;
-    }
+
+    // Client Left Penalty
+    const clientLeftPenalty = input.clientFeedback.clientLeft * 20;
+    score -= clientLeftPenalty;
+    breakdown.clientFeedback -= clientLeftPenalty;
 
   // Upskilling
   if (input.upskills.certificateAchieved) {
