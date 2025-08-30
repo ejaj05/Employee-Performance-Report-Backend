@@ -69,8 +69,7 @@ const submitPerformance = async (req, res) => {
     } = req.body;
 
     // Create or find employee
-    const employee = employeeId ? await Employee.findOne({ employeeId }) : null;
-    console.log(employee)
+    let employee = employeeId ? await Employee.findOne({ employeeId }) : null;
     if(employee){
       if(employee.name !== name || employee.role !== role || employee.department !== department){
         return res.status(400).json({ message: 'Employee details do not match existing records' });
