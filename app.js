@@ -12,7 +12,8 @@ app.use(express.json());
 
 app.use(cors(
   {
-    origin: 'https://employee-performance-report-frontend.vercel.app',
+    origin: true,
+    credentials: true
   }
 ));
 
