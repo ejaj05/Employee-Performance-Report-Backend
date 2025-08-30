@@ -232,7 +232,7 @@ const getReportsByRole = async (req, res) => {
 
     // Find reports for those employees
     const transformReport = await Promise.all(
-      employees.filter(async(emp) => {
+      employees.map(async(emp) => {
         const report = await PerformanceReport.findOne({ employeeId: emp.employeeId })
         if(report) {
           return {
@@ -266,7 +266,7 @@ const getReportsByDepartment = async (req, res) => {
 
     // Find reports for those employees
     const transformReport = await Promise.all(
-      employees.filter(async(emp) => {
+      employees.map(async(emp) => {
         const report = await PerformanceReport.findOne({ employeeId: emp.employeeId })
         if(report) {
           return {
